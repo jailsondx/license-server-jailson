@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model licenses {
+  id            Int       @id @default(autoincrement())
+  chave_licenca String?   @unique(map: "chave_licenca") @db.VarChar(100)
+  machine_id    String?   @unique(map: "machine_id") @db.VarChar(100)
+  status        String?   @default("ativo") @db.VarChar(20)
+  empresa       String?   @db.VarChar(100)
+  criado_em     DateTime? @default(now()) @db.DateTime(0)
+  ativado_em    DateTime? @db.DateTime(0)
+  ultima_check  DateTime? @db.DateTime(0)
+}
