@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send(`🖥️ Server API licenças JAILSON ! 🌐`);
+  res.send(`🖥️ Server API licenças! 🌐`);
 });
 
 app.use("/api/licenca", licencaRoutes);

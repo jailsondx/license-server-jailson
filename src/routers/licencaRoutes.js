@@ -4,12 +4,21 @@ import { prisma } from "../controller/prisma.js";
 
 const licencaRoutes = express.Router();
 
-licencaRoutes.post("/ativar", ativarLicenca);
+licencaRoutes.post("/ativar", async (req, res) => {
+  const { chave_licenca, machine_id } = req.body;
+  console.log('Chamada de ativação\n');
+  try {
+    const result = await ativarLicenca(prisma, chave_licenca, machine_id);
+    return handleResponse(res, result);
+  } catch (error) {
+    handleError(res, error);
+  }
+});
 
 
 licencaRoutes.post("/validar", async (req, res) => {
   const { chave_licenca, machine_id } = req.body;
-
+  console.log('Chamada de validação\n');
   try {
     const result = await validarLicenca(prisma, chave_licenca, machine_id);
     return handleResponse(res, result);
