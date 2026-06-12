@@ -6,7 +6,7 @@ const licencaRoutes = express.Router();
 
 licencaRoutes.post("/ativar", async (req, res) => {
   const { chave_licenca, machine_id } = req.body;
-  console.log('Chamada de ativação\n');
+
   try {
     const result = await ativarLicenca(prisma, chave_licenca, machine_id);
     return handleResponse(res, result);
@@ -18,7 +18,7 @@ licencaRoutes.post("/ativar", async (req, res) => {
 
 licencaRoutes.post("/validar", async (req, res) => {
   const { chave_licenca, machine_id } = req.body;
-  console.log('Chamada de validação\n');
+
   try {
     const result = await validarLicenca(prisma, chave_licenca, machine_id);
     return handleResponse(res, result);
