@@ -31,11 +31,13 @@ licencaRoutes.post("/validar", async (req, res) => {
 
 // Métodos auxiliares para padronizar respostas e erros
 const handleResponse = (res, result) => {
-  if (result.success) {
-    return res.status(200).json({ code: result.code, message: result.message, data: result.data });
-  } else {
-    return res.status(500).json({ code: res.code, message: result.message, error: result.error });
-  }
+  return res.status(200).json({
+    success: result.success,
+    code: result.code,
+    message: result.message,
+    data: result.data ?? null,
+    error: result.error ?? null
+  });
 };
 
 const handleError = (res, error) => {
